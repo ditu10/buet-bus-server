@@ -1,9 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-app.use(cors());
 
-const PORT = process.env.PORT || 5000;
+//middleware
+app.use(cors()); 
+app.use(express.json());
+
+const PORT = 5000;
 
 app.get('/', (req,res)=>{
     res.send("Hello from Node server");
@@ -31,13 +34,30 @@ app.get('/buses', (req, res)=>{
     // }
     // else{
     //     res.send(buses);
-    // }
+    // }  const data = req.body;
+    console.log('new Bus Data : ', data);
+    res.send(data);
     res.send(buses);
 })
+
+// create a new bus
+app.post('/bus', (req, res)=>{
+
+    const data = req.body;
+    console.log('new Bus Data : ', data);
+    res.send(data);
+})
+
+
+
 app.get('/buses/:id', (req, res)=>{ 
     const id = req.params.id;
     console.log("requested bus id: ",id);
-    res.send(buses[id-1]);
+    if(id<1 || id>= buses.length){
+        res.send("Invalid bus id");
+    }
+    else
+        res.send(buses[id-1]);
 })
 
 app.listen(PORT, ()=>{
