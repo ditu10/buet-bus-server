@@ -20,7 +20,7 @@ router.get('/:id', async (req,res, next)=>{
     try{
         const id = req.params.id;
         console.log("requested staff id: ",id);
-        const staff = Staff.find({"staffId" : id});
+        const staff = await Staff.find({"staffId" : id});
         res.send(staff);
     }catch(err){
         console.log(err);
@@ -50,12 +50,38 @@ router.post('/', async (req,res, next)=>{
   
 })
 
-router.put('/',(req,res)=>{
+router.post('/all', async (req,res, next)=>{
+    try{
+        const data =  req.body;
+        console.log('new Bus Data : ', data);
+        
+        const newStaff = await Staff.insertMany(data);
+       
+        res.send(newStaff);
+    
+
+    }catch(err){
+        console.log("error ")
+        next(err)
+    }
+  
+})
+
+router.put('/',async (req,res)=>{
 
 })
 
-router.delete('/:id', (req,res)=>{
-
+router.post('/:id', async (req, res, next)=>{
+    try{
+        const id = req.params.id;
+        console.log(id);
+        const del = await Staff.deleteOne({_id : id});
+        
+        res.send(del);
+    }catch(err){
+        console.log(err)
+        next(err)
+    }
 })
 
 
