@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const busHandler = require('./routes/busHandler')
+const routeHandler = require('./routes/routeHandler');
+const staffHandler = require('./routes/staffHandler')
 const mongoose = require('mongoose');
 require('dotenv').config()
 const connectDB = require('./config/dbConfig')
@@ -40,10 +42,31 @@ connect_to_db().then(() => {
 // busHandler 
 app.use('/bus', busHandler);
 
+// staffHandler
+app.use('/staff', staffHandler);
+
+// routeHandler 
+app.use('/route', routeHandler)
+
 
 app.get('/', (req,res)=>{
     res.send("Hello from Node server");
 })
+
+// not found any route error : 404
+app.use((req, res, next) => {
+    const error = new Error('Not found');
+    error.status = 404;
+    console.log('no route found');
+    res.send(error);
+});
+
+// final error handling  middl eware error : 500
+
+app.use((err, req, res, next) => {
+    console.log('last middleware');
+    res.status(err.status || 500).send(err.message);
+});
 
 
 

@@ -14,12 +14,14 @@ const busSchema = mongoose.Schema({
         type: String,
         required : true
     },
-    driverName : {
-        type: String,
+    driver : {
+        type: mongoose.SchemaType.ObjectId,
+        ref: 'Staff',
         // required : true
     },
-    helperName : {
-        type: String,
+    helper : {
+        type: mongoose.SchemaType.ObjectId,
+        ref : 'Staff',
         // required : true
     },
     Capacity : {
@@ -27,11 +29,13 @@ const busSchema = mongoose.Schema({
         required : true
     },
     route : {
-        type: String,
+        type : mongoose.SchemaType.ObjectId,
+        ref : 'Route',
         // required : true
     }
 
 
 });
+const Bus = new mongoose.model("Bus", busSchema);
 
-module.exports = busSchema;
+module.exports = Bus;

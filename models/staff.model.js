@@ -15,22 +15,23 @@ const staffScheme = mongoose.Schema({
         required : true
     },
     dob : {
-        type: Date,
-        required : true
+        type: String,
+        // required : true
     },
     busId : {
         type: String,
-        required : true
+        // required : true
     },
     photo : {
         type : String,
         // required : false
     },
-    licence : {
+    license : {
         type: String,
-        required : true
+        // required : true
     },
     
 });
+const Staff = mongoose.model("Staff", staffScheme);
 
-module.exports = staffScheme;
+module.exports = Staff;

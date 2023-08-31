@@ -3,9 +3,8 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 
-
 router.get('/', (req,res)=>{
-    //es.send(buses);
+    r//es.send(buses);
 })
 
 router.get('/:id', (req,res)=>{
@@ -31,5 +30,6 @@ router.put('/',(req,res)=>{
 router.delete('/:id', (req,res)=>{
 
 })
+
 
 module.exports = router;
