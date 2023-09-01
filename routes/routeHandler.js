@@ -4,18 +4,27 @@ const mongoose = require('mongoose');
 const Route = require('../models/route.model');
 
 
-router.get('/', (req,res)=>{
-    r//es.send(buses);
+router.get('/',async (req,res, next)=>{
+    try{
+        const allRoutes = await Route.find({});
+        console.log("GET : All routes");
+        res.send(allRoutes);
+    }catch(err){
+        console.log(err);
+        next(err);
+    }
 })
 
-router.get('/:id', (req,res)=>{
-    // const id = req.params.id;
-    // console.log("requested bus id: ",id);
-    // if(id<1 || id>= buses.length){
-    //     res.send("Invalid bus id");
-    // }
-    // else
-    //     res.send(buses[id-1]);
+router.get('/:id', async (req,res, next)=>{
+    try{
+        const id = req.params.id;
+        console.log("request for route id: ", id);
+        const singleRoute = await Route.findById(req.params.id);
+        res.send(singleRoute);
+    }catch(err){
+        console.log(err)
+        next(err);
+    }
 })
 
 router.post('/', async (req,res, next)=>{
@@ -28,9 +37,7 @@ router.post('/', async (req,res, next)=>{
         console.log(err);
         next(err);
     }
-    // const data = req.body;
-    // console.log('new Bus Data : ', data);
-    // res.send(data);
+    
 })
 
 router.put('/',(req,res)=>{
