@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const Route = require('../models/route.model');
 
 
 router.get('/', (req,res)=>{
@@ -17,7 +18,16 @@ router.get('/:id', (req,res)=>{
     //     res.send(buses[id-1]);
 })
 
-router.post('/', (req,res)=>{
+router.post('/', async (req,res, next)=>{
+    try{
+        const data = req.body;
+        const newRoute = new Route({...data});
+        const savedRoute =  await newRoute.save();
+        res.send(savedRoute);
+    }catch(err){
+        console.log(err);
+        next(err);
+    }
     // const data = req.body;
     // console.log('new Bus Data : ', data);
     // res.send(data);

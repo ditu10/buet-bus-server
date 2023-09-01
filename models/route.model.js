@@ -1,21 +1,31 @@
 const mongoose = require('mongoose');
 
+const pickupPoint = mongoose.Schema({
+    place : {
+        type: String,
+    },
+    time : {
+        type : String 
+    }
+})
+
+
 const routeScheme = mongoose.Schema({
-    name : {
+    routeName : {
         type : String,
         required : true
     },
-    stoppage : {
-        type : [String],
+    routeId : {
+        type : String,
         required : true
     },
-    startTime : {
-        type : Date,
-        // required : true
+    pickupPoints : {
+        type : [pickupPoint],
+        required : true
     },
-    endTime : {
-        type : Date,
-        // required : true
+    departureTime : {
+        type : String,
+        // required : true 
     }
     
 });

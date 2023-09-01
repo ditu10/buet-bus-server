@@ -20,17 +20,13 @@ router.get('/:id', async (req,res, next)=>{
     try{
         const id = req.params.id;
         console.log("requested staff id: ",id);
-        const staff = await Staff.find({"staffId" : id});
+        const staff = await Staff.findById(req.params.id);
         res.send(staff);
     }catch(err){
         console.log(err);
         next(err);
     }
-    // if(id<1 || id>= buses.length){
-    //     res.send("Invalid bus id");
-    // }
-    // else
-    //     res.send(buses[id-1]);
+    
 })
 
 router.post('/', async (req,res, next)=>{
