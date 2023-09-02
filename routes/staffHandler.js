@@ -32,8 +32,9 @@ router.get('/:id', async (req,res, next)=>{
 router.post('/', async (req,res, next)=>{
     try{
         const data =  req.body;
-        console.log('new Bus Data : ', data);
+        console.log('new Staff data : ', data);
         
+        // const busObj = Bus.findById(data.busId);
         const newStaff = new Staff({...data});
         const savedStaff =  await newStaff.save();
         res.send(savedStaff);
@@ -63,8 +64,16 @@ router.post('/all', async (req,res, next)=>{
   
 })
 
-router.put('/',async (req,res)=>{
-
+router.put('/:id',async (req,res, next)=>{
+    try{
+        const data = req.body;
+        const id = req.params.id;
+        const result = await Staff.findByIdAndUpdate(id,data);
+        res.send(result);
+    }catch(err){
+        console.log(err);
+        next(err);
+    }
 })
 
 router.post('/:id', async (req, res, next)=>{

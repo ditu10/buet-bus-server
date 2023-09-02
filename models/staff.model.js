@@ -15,21 +15,25 @@ const staffScheme = mongoose.Schema({
         required : true
     },
     dob : {
-        type: String,
-        // required : true
+        type: Date,
+        required : true
     },
     busId : {
         type: String,
         // required : true
     },
-    photo : {
-        type : String,
-        // required : false
-    },
     license : {
         type: String,
         // required : true
     },
+    NID : {
+        type : String,
+        required : true 
+    },
+    mobile : {
+        type : String,
+        // required : true
+    }
     
 });
 const Staff = mongoose.model("Staff", staffScheme);
