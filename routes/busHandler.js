@@ -7,7 +7,7 @@ const Bus = require('../models/bus.model');
 
 router.get('/', async (req,res, next)=>{
     try{
-        const buses = await Bus.find({}).populate(['driver', 'helper']);
+        const buses = await Bus.find({}).populate(['driver', 'helper','route']);
         res.send(buses);
     }catch(err){
         console.log(err).message;
@@ -16,14 +16,17 @@ router.get('/', async (req,res, next)=>{
     //es.send(buses);
 })
 
-router.get('/:id', (req,res)=>{
-    // const id = req.params.id;
-    // console.log("requested bus id: ",id);
-    // if(id<1 || id>= buses.length){
-    //     res.send("Invalid bus id");
-    // }
-    // else
-    //     res.send(buses[id-1]);
+router.get('/:id', async (req,res, next)=>{
+    try{
+        const id = req.params.id;
+        console.log("requested bus id : ", id);
+        const bus = await Bus.findById(req.params.id).populate(['driver', 'helper','route']);
+        console.log(bus);
+        res.send(bus);
+    }catch(err){
+        console.log(err);
+        next(err);
+    }
 })
 
 router.post('/', async (req,res, next)=>{
