@@ -1,10 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const Bus = require('../models/bus.model');
 
 
 
-router.get('/', (req,res)=>{
+router.get('/', async (req,res, next)=>{
+    try{
+        const buses = await Bus.find({}).populate(['driver', 'helper']);
+        res.send(buses);
+    }catch(err){
+        console.log(err).message;
+        next(err);
+    }
     //es.send(buses);
 })
 
@@ -18,10 +26,17 @@ router.get('/:id', (req,res)=>{
     //     res.send(buses[id-1]);
 })
 
-router.post('/', (req,res)=>{
-    // const data = req.body;
-    // console.log('new Bus Data : ', data);
-    // res.send(data);
+router.post('/', async (req,res, next)=>{
+    try{
+        const data = req.body;
+        console.log(data);
+        const newBus = new Bus({...data});
+        const savedBus =  await newBus.save();
+        res.send(savedBus);
+    }catch(err){
+        console.log(err);
+        next(err);
+    } 
 })
 
 router.put('/',(req,res)=>{

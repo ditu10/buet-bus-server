@@ -8,28 +8,36 @@ const busSchema = mongoose.Schema({
     busType : {
         type : String,
         required : true,
-        enum: ['Bus', 'Microbus', 'Ambulance']
+        enum: ["Teacher's Bus", "Student's Bus", "Staff Bus"] 
     },
     busNo : {
         type: String,
         required : true
     },
+    regNo : {
+        type : String,
+        required : true
+    },
+    dateOfActivation : {
+        type : Date,
+        // required : true 
+    },
     driver : {
-        type: mongoose.SchemaType.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: 'Staff',
         // required : true
     },
     helper : {
-        type: mongoose.SchemaType.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref : 'Staff',
         // required : true
     },
-    Capacity : {
+    capacity : {
         type: Number,
-        required : true
+        // required : true
     },
     route : {
-        type : mongoose.SchemaType.ObjectId,
+        type : mongoose.SchemaTypes.ObjectId,
         ref : 'Route',
         // required : true
     }

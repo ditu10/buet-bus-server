@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const pickupPoint = mongoose.Schema({
     place : {
-        type: String,
+        type: String
     },
     time : {
         type : String 

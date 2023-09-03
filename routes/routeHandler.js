@@ -44,8 +44,15 @@ router.put('/',(req,res)=>{
 
 })
 
-router.delete('/:id', (req,res)=>{
-
+router.delete('/:id', async (req,res, next)=>{
+    try{
+        const result = await Route.deleteOne({_id : req.params.id});
+        console.log(result);
+        res.send(result);
+    }catch(err){
+        console.log(err);
+        next(err);
+    }
 })
 
 
