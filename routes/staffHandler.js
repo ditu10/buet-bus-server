@@ -6,7 +6,7 @@ const Staff = require('../models/staff.model');
 
 router.get('/', async (req,res,next)=>{
     try{
-        const staffs = await Staff.find({});
+        const staffs = await Staff.find({}).populate('bus');;
         res.send(staffs);   
     }catch(err){
         console.log(err);
@@ -20,7 +20,7 @@ router.get('/:id', async (req,res, next)=>{
     try{
         const id = req.params.id;
         console.log("requested staff id: ",id);
-        const staff = await Staff.findById(req.params.id);
+        const staff = await Staff.findById(req.params.id).populate('bus');;
         console.log(staff);
         res.send(staff);
     }catch(err){

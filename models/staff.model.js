@@ -35,7 +35,8 @@ const staffScheme = mongoose.Schema({
         // required : true
     },
     bus : {
-        type : String
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Bus',
     }
     
 });
