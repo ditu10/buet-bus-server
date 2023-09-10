@@ -5,7 +5,7 @@ const Bus = require('../models/bus.model');
 const Staff = require('../models/staff.model');
 const Route = require('../models/route.model');
 
-
+console.log(Bus);
 
 router.get('/', async (req,res, next)=>{
     try{

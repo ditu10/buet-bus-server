@@ -3,7 +3,9 @@ const cors = require('cors');
 const app = express();
 const busHandler = require('./routes/busHandler')
 const routeHandler = require('./routes/routeHandler');
-const staffHandler = require('./routes/staffHandler')
+const staffHandler = require('./routes/staffHandler');
+const authHandler = require('./routes/authHandler');
+
 const mongoose = require('mongoose');
 require('dotenv').config()
 const connectDB = require('./config/dbConfig')
@@ -48,6 +50,7 @@ app.use('/staff', staffHandler);
 // routeHandler 
 app.use('/route', routeHandler)
 
+app.use('/auth', authHandler)
 
 app.get('/', (req,res)=>{
     res.send("Hello from Node server");
