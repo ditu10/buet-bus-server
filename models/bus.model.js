@@ -40,6 +40,11 @@ const busSchema = mongoose.Schema({
         type : mongoose.SchemaTypes.ObjectId,
         ref : 'Route',
         // required : true
+    },
+    status: {
+        type : String,
+        enum: ["Active", "Inactive"],
+        default : "Active"
     }
 
 

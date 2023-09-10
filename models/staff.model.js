@@ -37,6 +37,11 @@ const staffScheme = mongoose.Schema({
     bus : {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Bus',
+    },
+    status : {
+        type : String,
+        enum : ["Active", "Inactive"],
+        default : "Inactive"
     }
     
 });
