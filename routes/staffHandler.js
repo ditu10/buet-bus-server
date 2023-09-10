@@ -21,6 +21,7 @@ router.get('/:id', async (req,res, next)=>{
         const id = req.params.id;
         console.log("requested staff id: ",id);
         const staff = await Staff.findById(req.params.id);
+        console.log(staff);
         res.send(staff);
     }catch(err){
         console.log(err);

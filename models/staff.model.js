@@ -33,6 +33,9 @@ const staffScheme = mongoose.Schema({
     mobile : {
         type : String,
         // required : true
+    },
+    bus : {
+        type : String
     }
     
 });

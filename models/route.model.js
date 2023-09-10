@@ -26,6 +26,9 @@ const routeScheme = mongoose.Schema({
     departureTime : {
         type : String,
         // required : true 
+    },
+    bus : {
+        type : [String]
     }
     
 });
